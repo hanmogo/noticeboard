@@ -13,6 +13,12 @@ java {
 	}
 }
 
+configuration{
+	compileOnly{
+		extendsFrom annotationProcessor
+	}
+}
+
 repositories {
 	mavenCentral()
 }
