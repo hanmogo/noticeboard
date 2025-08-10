@@ -3,15 +3,15 @@ package hanmogo.noticeboard.service.ReplyService;
 import hanmogo.noticeboard.domain.Member;
 import hanmogo.noticeboard.domain.Post;
 import hanmogo.noticeboard.domain.Reply;
-import hanmogo.noticeboard.exception.AccessDeniedException;
-import hanmogo.noticeboard.exception.EntityNotFoundException;
 import hanmogo.noticeboard.repository.MemberRepository.MemberRepository;
 import hanmogo.noticeboard.repository.PostRepository.PostRepository;
 import hanmogo.noticeboard.repository.ReplyRepository.ReplyRepository;
 import hanmogo.noticeboard.web.dto.reply.ReplyCreateRequestDto;
 import hanmogo.noticeboard.web.dto.reply.ReplyEditRequestDto;
 import hanmogo.noticeboard.web.dto.reply.ReplyResponseDto;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

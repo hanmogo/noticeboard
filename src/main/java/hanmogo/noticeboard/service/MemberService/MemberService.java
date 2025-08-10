@@ -3,7 +3,6 @@ package hanmogo.noticeboard.service.MemberService;
 
 import hanmogo.noticeboard.domain.Member;
 import hanmogo.noticeboard.domain.enums.UserStatus;
-import hanmogo.noticeboard.exception.EntityNotFoundException;
 import hanmogo.noticeboard.repository.MemberRepository.MemberRepository;
 import hanmogo.noticeboard.web.dto.member.MemberResponseDto;
 import hanmogo.noticeboard.web.dto.member.MemberSignUpRequestDto;
@@ -46,6 +45,11 @@ public class MemberService {
 
         // Entity -> DTO 변환 후 반환
         return MemberResponseDto.fromEntity(savedMember);
+    }
+
+    //이메일 중복 체크
+    public boolean isEmailDuplicated(String email) {
+        return memberRepository.existsByEmail(email);
     }
 
     //회원 조회

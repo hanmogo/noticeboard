@@ -17,3 +17,17 @@ spring:
         hbm2ddl:
           auto: update
         default_batch_fetch_size: 1000
+
+jwt:
+  secret: c2VjcmV0S2V5Rm9ySldUVG9rZW5BcHBsZXMgaW5jbHVkZSBtb3JlIHRoYW4gdHdlbnR5IHNpeCBieXRlcw==
+  token-validity-in-seconds: 86400
+
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html # Swagger UI 페이지 경로
+  api-docs:
+    path: /api-docs # API 명세 JSON 파일 경로
+  packagesToScan: hanmogo.noticeboard.web.controller # API를 스캔할 패키지
+  pathsToMatch: /api/** # 특정 경로의 API만 스캔

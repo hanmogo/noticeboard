@@ -39,7 +39,7 @@ public class Member extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(5)")
     private Gender gender;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 30, unique = true)
     private String email;
 
     @Column(nullable = false, length = 30)

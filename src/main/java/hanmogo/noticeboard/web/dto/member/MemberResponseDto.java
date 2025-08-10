@@ -25,6 +25,8 @@ public class MemberResponseDto {
                 .email(member.getEmail())
                 .name(member.getName())
                 .nickname(member.getNickname())
+                .phoneNum(member.getPhoneNum())
+                .birthDate(member.getBirthdate())
                 .gender(member.getGender() != null ? member.getGender().name() : null)
                 .build();
     }

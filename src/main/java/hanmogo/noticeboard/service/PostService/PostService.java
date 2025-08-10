@@ -2,20 +2,20 @@ package hanmogo.noticeboard.service.PostService;
 
 import hanmogo.noticeboard.domain.Member;
 import hanmogo.noticeboard.domain.Post;
-import hanmogo.noticeboard.exception.AccessDeniedException;
-import hanmogo.noticeboard.exception.EntityNotFoundException;
 import hanmogo.noticeboard.repository.MemberRepository.MemberRepository;
 import hanmogo.noticeboard.repository.PostRepository.PostRepository;
 import hanmogo.noticeboard.web.dto.post.PostCreateRequestDto;
 import hanmogo.noticeboard.web.dto.post.PostEditRequestDto;
 import hanmogo.noticeboard.web.dto.post.PostResponseDto;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 
 
 import java.util.List;

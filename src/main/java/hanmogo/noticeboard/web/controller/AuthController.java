@@ -8,6 +8,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +32,26 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 
+
+    // 로그인 API
+    @PostMapping("/login")
+    public ResponseEntity<MemberResponseDto> login(@Valid @RequestBody MemberLoginRequestDto memberLoginRequestDto) {
+        // 1. UsernamePasswordAuthenticationToken 생성 (인증 시도 객체)
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(memberLoginRequestDto.getEmail(), memberLoginRequestDto.getPassword());
+
+        // 2. AuthenticationManagerBuilder를 통해 인증 시도
+        //    - loadUserByUsername 메서드가 호출되며 사용자 정보와 비밀번호를 검증
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+
+        // 3. 인증 정보를 SecurityContext에 저장
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        // 4. 인증된 Authentication 객체로 JWT 토큰 생성
+        String jwt = jwtTokenProvider.createToken(authentication);
+
+        // 5. 생성된 JWT 토큰을 응답 본문에 담아 반환
+        return ResponseEntity.ok(new MemberResponseDto(jwt));
+    }
+
 }
-    //로그인 api
-//    @PostMapping("/login")
-//    public ResponseEntity<MemberLoginRequestDto> login(@Valid @RequestBody MemberLoginRequestDto requestDto) {
-//        MemberLoginRequestDto
-//    }
-//}
